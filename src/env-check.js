@@ -2,9 +2,9 @@
  * Will print missing env variables, and default value if they have one
  * Will throw an error if a missing env variable has no default value
  * @param {[{name: string, default?: string }]} expectedEnv list of all the variable to check
- * eg {name: PORT, default: '3000'} 
+ * eg {name: PORT, default: '3000'}
  */
-const checkMissingEnvVariables = (expectedEnv) => {
+const checkMissingEnvVariables = expectedEnv => {
   const undefinedEnvVariables = expectedEnv.filter(env => {
     return !process.env[env.name];
   });
@@ -26,5 +26,5 @@ const checkMissingEnvVariables = (expectedEnv) => {
 };
 
 module.exports = {
-  checkMissingEnvVariables
-}
+  checkMissingEnvVariables,
+};
