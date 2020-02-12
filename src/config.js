@@ -1,6 +1,4 @@
-const expectedEnvVariables = [
-  { name: 'PORT', default: '3000' },
-];
+const expectedEnvVariables = [{ name: 'PORT', default: '3000' }];
 
 const getEnvDefaultValue = (entries, varName) => {
   return entries.find(env => env.name === varName).default;
@@ -12,5 +10,5 @@ const config = {
 
 module.exports = {
   expectedEnvVariables,
-  config
-}
+  config,
+};
