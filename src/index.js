@@ -9,10 +9,9 @@ const server = Hapi.server({
   port: 3000
 });
 
-
 const swaggerOptions = {
   info: {
-    title: 'Api specification',
+    title: 'Api specifications',
     version: package.version,
   },
 };
