@@ -9,6 +9,8 @@ const checkMissingEnvVariables = expectedEnv => {
     return !process.env[env.name];
   });
 
+  if (undefinedEnvVariables.length === 0) return;
+
   console.log();
   let requiredEnvVarMissing = false;
   console.log('Missing environnement variables:');
