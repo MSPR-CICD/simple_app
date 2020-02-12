@@ -3,25 +3,27 @@ const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const package = require('../package');
+const { expectedEnvVariables, config } = require('config');
+const {checkMissingEnvVariables} = require('env-check');
+
+checkMissingEnvVariables(expectedEnvVariables)
 
 const server = Hapi.server({
   host: 'localhost',
-  port: process.env.PORT || 3000
+  port: config.port
 });
-
-const swaggerOptions = {
-  info: {
-    title: 'Api specifications',
-    version: package.version,
-  },
-};
 
 server.register([
   Inert,
   Vision,
   {
     plugin: HapiSwagger,
-    options: swaggerOptions
+    options: {
+      info: {
+        title: 'Api specifications',
+        version: package.version,
+      },
+    }
   }
 ]).then(() => {
 }).then(() => {
