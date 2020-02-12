@@ -3,8 +3,8 @@ const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const package = require('../package');
-const { expectedEnvVariables, config } = require('config');
-const { checkMissingEnvVariables } = require('env-check');
+const { expectedEnvVariables, config } = require('./config');
+const { checkMissingEnvVariables } = require('./env-check');
 
 checkMissingEnvVariables(expectedEnvVariables);
 
