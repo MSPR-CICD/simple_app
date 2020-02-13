@@ -1,15 +1,10 @@
-const Hapi = require('@hapi/hapi');
-const { registerClientsRoutes } = require('./clients.routes');
+const { initServer } = require('../server');
 
 describe('GET /users', () => {
   let server;
 
-  beforeEach(() => {
-    server = Hapi.server({
-      port: process.env.port,
-    });
-    registerClientsRoutes(server);
-    server.start();
+  beforeEach(async () => {
+    server = await initServer();
   });
 
   afterEach(async () => {
