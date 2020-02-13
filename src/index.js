@@ -3,10 +3,10 @@ const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const package = require('../package');
-const { expectedEnvVariables, config } = require('./config');
+const { expectedEnv, config } = require('./config');
 const { checkMissingEnvVariables } = require('./env-check');
 
-checkMissingEnvVariables(expectedEnvVariables);
+checkMissingEnvVariables(expectedEnv);
 
 const server = Hapi.server({
   host: 'localhost',
