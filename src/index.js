@@ -7,6 +7,11 @@ const { expectedEnv, config } = require('./config');
 const { checkMissingEnvVariables } = require('./env-check');
 const { registerClientsRoutes } = require('./clients/clients.routes');
 
+process.on('unhandledRejection', err => {
+  console.log(err);
+  process.exit(1);
+});
+
 checkMissingEnvVariables(expectedEnv);
 
 const server = Hapi.server({
@@ -31,5 +36,5 @@ server
   .then(() => {
     registerClientsRoutes(server);
   })
-  .then(() => server.start())
+  .then(async () => await server.start())
   .then(() => console.log(`Server running on ${server.info.uri}`));
