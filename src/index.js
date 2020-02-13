@@ -5,6 +5,7 @@ const HapiSwagger = require('hapi-swagger');
 const package = require('../package');
 const { expectedEnv, config } = require('./config');
 const { checkMissingEnvVariables } = require('./env-check');
+const { registerClientsRoutes } = require('./clients/clients.routes');
 
 checkMissingEnvVariables(expectedEnv);
 
@@ -27,8 +28,8 @@ server
       },
     },
   ])
-  .then(() => {})
   .then(() => {
-    server.start();
+    registerClientsRoutes(server);
   })
+  .then(() => server.start())
   .then(() => console.log(`Server running on ${server.info.uri}`));
