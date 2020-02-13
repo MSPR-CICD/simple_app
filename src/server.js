@@ -9,7 +9,6 @@ const { registerPurchasesRoutes } = require('./purchases/purchases.routes');
 
 const initServer = async () => {
   const server = Hapi.server({
-    host: 'localhost',
     port: config.port,
   });
 

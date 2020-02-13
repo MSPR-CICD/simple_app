@@ -3,7 +3,7 @@ const { checkMissingEnvVariables } = require('./env-check');
 const { initServer } = require('./server');
 
 process.on('unhandledRejection', err => {
-  console.log(err);
+  console.error(err);
   process.exit(1);
 });
 

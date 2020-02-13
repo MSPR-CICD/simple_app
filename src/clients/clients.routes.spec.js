@@ -1,6 +1,6 @@
 const { initServer } = require('../server');
 
-describe('GET /users', () => {
+describe('GET /clients', () => {
   let server;
 
   beforeEach(async () => {
