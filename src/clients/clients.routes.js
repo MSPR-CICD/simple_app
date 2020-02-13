@@ -2,6 +2,7 @@ const { findAllClients } = require('./clients.controller');
 const { findAllPurchasesByClientId } = require('../purchases/purchases.controller');
 const Joi = require('@hapi/joi');
 
+
 const registerClientsRoutes = server => {
   server.route({
     method: 'GET',
