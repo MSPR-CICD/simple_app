@@ -20,12 +20,6 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [12.x]
-    # env:
-    #   DB_USER: ${{ secrets.STG_DB_USER }}
-    #   DB_PASSWORD: ${{ secrets.STG_DB_PASSWORD }}
-    #   DB_HOST: ${{ secrets.STG_DB_HOST }}
-    #   DB_PORT: ${{ secrets.STG_DB_PORT }}
-    #   DB_NAME: ${{ secrets.STG_DB_NAME }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@master
@@ -46,7 +40,7 @@ jobs:
         run: npm ci
       - name: Run lint
         run: npm run lint src/*
-      - run: env
+      - run: ls -l
       - name: Run tests
         run: npm run test:ci
         env:
