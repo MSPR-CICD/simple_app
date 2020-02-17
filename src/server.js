@@ -8,6 +8,7 @@ const { registerClientsRoutes } = require('./clients/clients.routes');
 const { registerPurchasesRoutes } = require('./purchases/purchases.routes');
 
 const initServer = async () => {
+  console.log(package); //TMP
   const server = Hapi.server({
     port: config.port,
   });
