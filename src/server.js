@@ -10,6 +10,9 @@ const { registerPurchasesRoutes } = require('./purchases/purchases.routes');
 const initServer = async () => {
   const server = Hapi.server({
     port: config.port,
+    routes: {
+      cors: true,
+    },
   });
 
   await server.register([
