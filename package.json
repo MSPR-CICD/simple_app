@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "dotenv -- nodemon src/index.js",
-    "test": "jest --watch",
+    "test": "dotenv -- jest --watch",
     "test:ci": "dotenv -- jest --runInBand --ci --coverage",
     "release": "standard-version",
     "lint": "eslint"
