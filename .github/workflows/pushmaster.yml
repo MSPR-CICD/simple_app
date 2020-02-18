@@ -5,6 +5,13 @@ on:
     branches:
       - master
 
+env:
+  DB_USER: ${{ secrets.PROD_DB_USER }}
+  DB_PASSWORD: ${{ secrets.PROD_DB_PASSWORD }}
+  DB_HOST: ${{ secrets.PROD_DB_HOST }}
+  DB_PORT: ${{ secrets.PROD_DB_PORT }}
+  DB_NAME: ${{ secrets.PROD_DB_NAME }}
+
 jobs:
   build_test_deploy:
     name: Build, test and deploy to Heroku
@@ -13,12 +20,6 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [12.x]
-    env:
-      DB_USER: ${{ secrets.PROD_DB_USER }}
-      DB_PASSWORD: ${{ secrets.PROD_DB_PASSWORD }}
-      DB_HOST: ${{ secrets.PROD_DB_HOST }}
-      DB_PORT: ${{ secrets.PROD_DB_PORT }}
-      DB_NAME: ${{ secrets.PROD_DB_NAME }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@master
