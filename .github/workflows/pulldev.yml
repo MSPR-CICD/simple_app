@@ -40,7 +40,6 @@ jobs:
         run: npm ci
       - name: Run lint
         run: npm run lint src/*
-      - run: ls -l
       - name: Run tests
         run: npm run test:ci
         env:

@@ -2,13 +2,12 @@ const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
-const package = require('../package');
+const pack = require('../package');
 const { config } = require('./config');
 const { registerClientsRoutes } = require('./clients/clients.routes');
 const { registerPurchasesRoutes } = require('./purchases/purchases.routes');
 
 const initServer = async () => {
-  console.log(package); //TMP
   const server = Hapi.server({
     port: config.port,
   });
@@ -21,7 +20,7 @@ const initServer = async () => {
       options: {
         info: {
           title: 'Api specifications',
-          version: package.version,
+          version: pack.version,
         },
       },
     },
