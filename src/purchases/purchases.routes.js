@@ -10,7 +10,7 @@ const registerPurchasesRoutes = server => {
       tags: ['api'],
     },
     handler: async () => {
-      return await findAllPurchases();
+      return [];
     },
   });
 };
