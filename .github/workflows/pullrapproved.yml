@@ -1,0 +1,19 @@
+name: Send GIF reaction on pull request approval
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: micnncim/action-lgtm-reaction@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
+        with:
+          trigger: '[".*looks good to me.*", "^lgtm$", "^LGTM$", "^[gG]ood [jJ]ob!?$"]'
+          override: true
+          source: 'giphy'

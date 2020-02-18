@@ -1,0 +1,49 @@
+name: Pull requests on master
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build then test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [12.x]
+    env:
+      DB_USER: ${{ secrets.PROD_DB_USER }}
+      DB_PASSWORD: ${{ secrets.PROD_DB_PASSWORD }}
+      DB_HOST: ${{ secrets.PROD_DB_HOST }}
+      DB_PORT: ${{ secrets.PROD_DB_PORT }}
+      DB_NAME: ${{ secrets.PROD_DB_NAME }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint src/*
+      - name: Run tests
+        run: npm run test:ci
+        env:
+          CI: true
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
